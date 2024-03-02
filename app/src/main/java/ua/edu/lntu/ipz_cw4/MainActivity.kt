@@ -27,7 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    App()
                 }
             }
         }
@@ -119,8 +119,8 @@ fun Screen2(selectedItem: Int) {
 // функція програми яка об'єднує всі елементи і забезпечує їх взаємодію.
 fun App() {
     // Збереження стану
-    var selectedItem by remember { mutableStateOf(-1) }
-    var currentScreen by remember { mutableStateOf(0) }
+    var selectedItem by remember { mutableIntStateOf(-1) }
+    var currentScreen by remember { mutableIntStateOf(0) }
 
     // Створення списку елементів
     val items = remember { List(10) {"Item $it"} }
@@ -138,7 +138,14 @@ fun App() {
             )
         }
     ) {
-
+        // оператор when щоб визначити який екран треба відобразити
+        when (currentScreen) {
+            0 -> Screen1(items = items ) {
+                index -> selectedItem = index
+                currentScreen = 1
+            }
+            1 -> Screen2(selectedItem = selectedItem)
+        }
     }
 }
 
