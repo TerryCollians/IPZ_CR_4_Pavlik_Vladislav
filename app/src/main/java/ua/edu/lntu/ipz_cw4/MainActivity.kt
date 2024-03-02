@@ -152,7 +152,7 @@ fun App() {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun AppPreview() {
     IPZ_CR_4Theme {
         App()
     }
