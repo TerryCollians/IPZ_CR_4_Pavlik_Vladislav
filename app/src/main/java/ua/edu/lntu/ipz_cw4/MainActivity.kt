@@ -105,9 +105,15 @@ fun Screen2(selectedItem: Int) {
 }
 
 @Composable
+
+// функція програми яка об'єднує всі елементи і забезпечує їх взаємодію.
 fun App() {
+    // Збереження стану
     var selectedItem by remember { mutableStateOf(-1) }
     var currentScreen by remember { mutableStateOf(0) }
+
+    // Створення списку елементів
+    val items = remember { List(10) {"Item $it"} }
 }
 
 
