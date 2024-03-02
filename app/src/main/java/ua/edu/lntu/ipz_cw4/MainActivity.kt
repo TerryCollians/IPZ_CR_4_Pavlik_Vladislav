@@ -67,9 +67,9 @@ fun Screen1(items: List<String>, onItemClick: (Int) -> Unit) {
         Text("Screen 1")
         Spacer(modifier = Modifier.height(16.dp))
         // Список елементів LazyColumn
-        LazyColumn{
-            itemsIndexed(items) {index, item ->
-                ListItem(index  , item  , onItemClick  )
+        LazyColumn {
+            itemsIndexed(items) { index, item ->
+                ListItem(index, item, onItemClick)
             }
         }
 
@@ -77,21 +77,20 @@ fun Screen1(items: List<String>, onItemClick: (Int) -> Unit) {
 }
 
 
-
 @Composable
 // Функція для представлення кожного елементу списку
 fun ListItem(index: Int, item: String, onItemClick: (Int) -> Unit) {
-   Row(
-       modifier = Modifier
-           .fillMaxWidth()
-           .clickable { onItemClick(index) }
-           .padding(8.dp),
-       verticalAlignment = Alignment.CenterVertically
-   )
-   {
-       // Текстове поле для відображення тексту елементу
-       Text(text = item)
-   }
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onItemClick(index) }
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    )
+    {
+        // Текстове поле для відображення тексту елементу
+        Text(text = item)
+    }
 }
 
 @Composable
@@ -104,7 +103,7 @@ fun Screen2(selectedItem: Int) {
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         // Вивід тексту "Screen2"
         Text("Екран 2")
         Spacer(modifier = Modifier.height(16.dp))
@@ -123,7 +122,7 @@ fun App() {
     var currentScreen by remember { mutableIntStateOf(0) }
 
     // Створення списку елементів
-    val items = remember { List(10) {"Елемент $it"} }
+    val items = remember { List(10) { "Елемент $it" } }
 
     // Відображення додатку
     Scaffold(
@@ -140,17 +139,15 @@ fun App() {
     ) {
         // оператор when щоб визначити який екран треба відобразити
         when (currentScreen) {
-            0 -> Screen1(items = items ) {
-                index -> selectedItem = index
+            0 -> Screen1(items = items) { index ->
+                selectedItem = index
                 currentScreen = 1
             }
+
             1 -> Screen2(selectedItem = selectedItem)
         }
     }
 }
-
-
-
 
 
 @Preview(showBackground = true)
