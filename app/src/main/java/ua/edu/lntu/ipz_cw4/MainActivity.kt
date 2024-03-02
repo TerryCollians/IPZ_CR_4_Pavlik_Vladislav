@@ -106,9 +106,9 @@ fun Screen2(selectedItem: Int) {
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         // Вивід тексту "Screen2"
-        Text("Screen 2")
+        Text("Екран 2")
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Selected item: $selectedItem")
+        Text("Вибрано елементів: $selectedItem")
     }
 }
 
@@ -123,13 +123,13 @@ fun App() {
     var currentScreen by remember { mutableIntStateOf(0) }
 
     // Створення списку елементів
-    val items = remember { List(10) {"Item $it"} }
+    val items = remember { List(10) {"Елемент $it"} }
 
     // Відображення додатку
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Jetpack Compose Example") },
+                title = { Text("Віталій Володимирович, виберіть кількість елементів") },
                 navigationIcon = {
                     IconButton(onClick = { currentScreen = 0 }) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
