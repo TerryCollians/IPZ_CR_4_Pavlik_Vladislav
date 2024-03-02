@@ -1,5 +1,6 @@
 package ua.edu.lntu.ipz_cw4
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,9 +15,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -104,6 +112,8 @@ fun Screen2(selectedItem: Int) {
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
 // функція програми яка об'єднує всі елементи і забезпечує їх взаємодію.
@@ -114,7 +124,24 @@ fun App() {
 
     // Створення списку елементів
     val items = remember { List(10) {"Item $it"} }
+
+    // Відображення додатку
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Jetpack Compose Example") },
+                navigationIcon = {
+                    IconButton(onClick = { currentScreen = 0 }) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                }
+            )
+        }
+    ) {
+
+    }
 }
+
 
 
 
@@ -123,6 +150,6 @@ fun App() {
 @Composable
 fun GreetingPreview() {
     IPZ_CR_4Theme {
-
+        App()
     }
 }
